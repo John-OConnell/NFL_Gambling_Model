@@ -13,9 +13,11 @@ def calc_winning_percentage(results):
             if model_pred > 0 and vegas_line <= 0:
                 # model predicts larger margin of victory than vegas and ht covers
                 if model_pred > abs(vegas_line) and ht_pts_diff > abs(vegas_line):
+                    print("Vegas Line: ", vegas_line, ", model pred: ", -(model_pred), ", final pts diff: ", ht_pts_diff)
                     win_count+=1
                 # model predicts smaller margin of victory than vegas and at covers
                 elif model_pred < abs(vegas_line) and ht_pts_diff < abs(vegas_line):
+                    print("Vegas Line: ", vegas_line, ", model pred: ", -(model_pred), ", final pts diff: ", ht_pts_diff)
                     win_count+=1
                 # model prediction same as vegas - no bet
                 elif model_pred == abs(vegas_line):
@@ -24,14 +26,17 @@ def calc_winning_percentage(results):
             elif model_pred > 0 and vegas_line > 0:
                 # ht wins or covers
                 if ht_pts_diff > 0 or abs(ht_pts_diff) < vegas_line:
+                    print("Vegas Line: ", vegas_line, ", model pred: ", -(model_pred), ", final pts diff: ", ht_pts_diff)
                     win_count+=1
             # model predicts ht loss, vegas predicts ht loss or pick em
             elif model_pred < 0 and vegas_line >= 0:
                 # model predicts smaller margin of loss than vegas and ht wins or covers
                 if abs(model_pred) < vegas_line and (ht_pts_diff > 0 or abs(ht_pts_diff) < vegas_line):
+                    print("Vegas Line: ", vegas_line, ", model pred: ", -(model_pred), ", final pts diff: ", ht_pts_diff)
                     win_count+=1
                 # model predicts larger margin of loss than vegas and at covers
                 elif abs(model_pred) > vegas_line and ht_pts_diff < 0 and abs(ht_pts_diff) > vegas_line:
+                    print("Vegas Line: ", vegas_line, ", model pred: ", -(model_pred), ", final pts diff: ", ht_pts_diff)
                     win_count+=1
                 # model predicts same as vegas - no bet
                 elif abs(model_pred) == vegas_line:
@@ -40,14 +45,17 @@ def calc_winning_percentage(results):
             elif model_pred < 0 and vegas_line < 0:
                 # at wins or covers
                 if ht_pts_diff < 0 or ht_pts_diff < abs(vegas_line):
+                    print("Vegas Line: ", vegas_line, ", model pred: ", -(model_pred), ", final pts diff: ", ht_pts_diff)
                     win_count+=1
             # model precits pick em
             elif model_pred == 0:
                 # vegas predicts ht loss and ht wins or covers
                 if vegas_line > 0 and (ht_pts_diff > 0 or abs(ht_pts_diff) < vegas_line):
+                    print("Vegas Line: ", vegas_line, ", model pred: ", -(model_pred), ", final pts diff: ", ht_pts_diff)
                     win_count+=1
                 # vegas predicts at loss and at wins or covers
                 if vegas_line < 0 and (ht_pts_diff < 0 or ht_pts_diff < abs(vegas_line)):
+                    print("Vegas Line: ", vegas_line, ", model pred: ", -(model_pred), ", final pts diff: ", ht_pts_diff)
                     win_count+=1
             # check to make sure everything is accounted for
             else:
